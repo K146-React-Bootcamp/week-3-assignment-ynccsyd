@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Javascrpit Custom Event Counter Example</title>
+    <meta charset="UTF-8" />
+   
+  </head>
+
+  <body>
+    <div id="app" >
+     My Counter: <span id="counter">0</span>
+      <button onclick="counterChange('increment')">+</button>
+      <button onclick="counterChange('decrement')">-</button>
+    </div>
+
+    <script>
+      const counterEl = document.querySelector("#counter");
+
+      counterEl.addEventListener("counter-change", (e) => {
+        e.target.innerHTML = e.detail.count;
+      });
+
+      function counterChange(type) {
+        switch (type) {
+          case "increment":
+            counterEl.dispatchEvent(
+              new CustomEvent(
+                "counter-change",
+                {
+                  detail: {
+                    count: Number(counterEl.innerHTML) + 1
+                  }
+                },
+                false
+              )
+            );
+            break;
+          case "decrement":
+            counterEl.dispatchEvent(
+              new CustomEvent(
+                "counter-change",
+                {
+                  detail: {
+                    count: Number(counterEl.innerHTML) - 1
+                  }
+                },
+                false
+              )
+            );
+          default:
+            break;
+        }
+      }
+    </script>
+  </body>
+</html>
