@@ -7,19 +7,23 @@
   </head>
 
   <body>
+  
     <div id="app" >
+<!-- id si counter olan bir span ve iki adet onclick eventinde counterChange fonksiyon ekliyoruz-->
      My Counter: <span id="counter">0</span>
       <button onclick="counterChange('increment')">+</button>
       <button onclick="counterChange('decrement')">-</button>
     </div>
 
+<!--counterEl elementi için adı ‘counter-change’ olan bir CustomEvent dispatch ediyoruz -->
     <script>
       const counterEl = document.querySelector("#counter");
 
+//butonlara tıklanınca CustomEvent ile counter ı dispatch ettik
       counterEl.addEventListener("counter-change", (e) => {
         e.target.innerHTML = e.detail.count;
       });
-
+//counterChange fonksiyonu oluşturup parametre olarak type ekliyoruz
       function counterChange(type) {
         switch (type) {
           case "increment":
@@ -46,9 +50,9 @@
                 },
                 false
               )
-            );
-          default:
+            ); default:
             break;
+          
         }
       }
     </script>
