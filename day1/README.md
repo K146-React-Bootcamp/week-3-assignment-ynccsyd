@@ -1,3 +1,81 @@
+# REACT PAGINATION
+- In this project you have to know:
+<div>
+  <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original-wordmark.svg" title="React" alt="React" width="40" height="40"/>&nbsp; <img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" title="Git" **alt="Git" width="40" height="40"/>
+  
+</div>
+
+#### `run on the terminal`
+```
+npm create-react-app day1
+npm i
+npm start
+```
+---
+- Now,  fetch the data It takes a URL as a parameter and makes a get request to it.
+
+![image](https://user-images.githubusercontent.com/109158340/194676890-b3ff0353-0d11-4e88-a459-ec94da9af1a2.png)
+---
+- Create a table, that holds all the TODOS, will be created inside components.
+---
+## Pagination
+- In pagination, you can choose how many records are to be displayed on a single page, according to which the number of pages is decided.
+```
+// User is currently on this page
+const [currentPage, setCurrentPage] = useState(1);
+```
+- Now, take a subset of the data array with the indices calculated above using the slice function of JavaScript.
+```
+// Todos to be displayed on the current page
+	const getDataWithPage = (page) => {
+		return todos.slice((page - 1) * 10, page * 10); 
+	};
+```
+- Calculate the number of pages
+```
+setTotalPage(Math.ceil(todos.length/15));
+```
+- Inside the component, create an array that holds all the page numbers from 1 to pages.
+```
+{Array.from({ length: totalPage }, (v, i) => i  + 1).map((page) => (
+					<Button className = { page === currentPage ? 'btn btn-primary' : 'btn btn-outline-primary'}
+						onClick={() => setCurrentPage(page)}
+					>
+						{page}
+```
+#### If you want [several ways](https://www.techiedelight.com/create-array-from-1-n-javascript/) to create an array from 1 to N in JavaScript, this is one of them.
+
+
+- and set your buttons:
+```
+<Button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1} >
+					Prev
+				</Button>
+				
+				{Array.from({ length: totalPage }, (v, i) => i  + 1).map((page) => (
+					<Button className = { page === currentPage ? 'btn btn-primary' : 'btn btn-outline-primary'}
+						onClick={() => setCurrentPage(page)}
+					>
+						{page}
+
+					</Button>
+
+				))}
+
+				<Button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPage}>
+					Next
+				</Button>
+
+```
+
+---
+
+
+
+
+
+
+---
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
