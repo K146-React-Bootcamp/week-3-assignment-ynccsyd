@@ -4,11 +4,13 @@ import classes from "./style.module.css";
 
 const url = "https://jsonplaceholder.typicode.com/todos";
 
+
+ //  To hold the actual data
 const TodoList = () => {
 	const [todos, setTodos] = useState([]);
 	const [selectedTodo, setSelectedTodo] = useState();
 	const [totalPage, setTotalPage] = useState(0);
-	const [currentPage, setCurrentPage] = useState(1);
+	const [currentPage, setCurrentPage] = useState(1);  // User is currently on this page
 	const [changeValue, setChangeValue] =useState('');
 
 
@@ -17,6 +19,7 @@ const TodoList = () => {
 			.then((response) => response.json())
 			.then((todos) => {
 				setTodos(todos);
+				//Calculate the number of pages
 				setTotalPage(Math.ceil(todos.length/15));
 		
 			})
@@ -63,9 +66,9 @@ const TodoList = () => {
 		setTodos(newTodos);
 	};
 
-
+// Todos to be displayed on the current page
 	const getDataWithPage = (page) => {
-		return todos.slice((page - 1) * 10, page * 10);
+		return todos.slice((page - 1) * 10, page * 10); 
 	};
 
 
@@ -120,6 +123,7 @@ const TodoList = () => {
 				<Button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1} >
 					Prev
 				</Button>
+				
 				{Array.from({ length: totalPage }, (v, i) => i  + 1).map((page) => (
 					<Button className = { page === currentPage ? 'btn btn-primary' : 'btn btn-outline-primary'}
 						onClick={() => setCurrentPage(page)}
