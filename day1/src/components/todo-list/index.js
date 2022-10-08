@@ -19,6 +19,7 @@ const TodoList = () => {
 			.then((response) => response.json())
 			.then((todos) => {
 				setTodos(todos);
+				
 				//Calculate the number of pages
 				setTotalPage(Math.ceil(todos.length/15));
 		
@@ -97,7 +98,7 @@ const TodoList = () => {
 		);
 	};
 
-
+// set the edit button
 	const renderEditForm = () => {
 		return (
 			<div>
@@ -110,7 +111,7 @@ const TodoList = () => {
 	};
 
 
-
+// Inside thecomponent, create an array that holds all the page numbers from 1 to pages
 
 	return (
 		<div className={`${classes.container} container`}>
